@@ -36,7 +36,7 @@ public class AdminController {
         user.setGender(gender);
         userService.update(user);
         SessionUtil.changeSession(session,user);
-        userService.saveUserHead(Integer.parseInt(session.getAttribute("id").toString()),servletContext,value);
-
+        if(!value.equals("0"))
+            userService.saveUserHead(Integer.parseInt(session.getAttribute("id").toString()),servletContext,value);
     }
 }

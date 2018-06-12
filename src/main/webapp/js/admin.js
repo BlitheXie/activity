@@ -43,11 +43,17 @@ $(function(){
     });
     /*提交保存信息*/
     $("#save_user_message").click(function () {
-        var value = clipImg.split(",");
+        if(clipImg != "")
+            var value = clipImg.split(",");
+        else{
+            var value = [0,0];
+        }
+
         var gender = $('input[name="gender"]:checked ').val();
         $.post(url,{header:value[1],username:username,gender:gender},function (data) {
-            window.location.replace("http://"+window.location.host+"/main.html");
-        });
+
+        },false);
+        window.location.replace("http://"+window.location.host+"/admin.html");
     });
 
     $(function() {
