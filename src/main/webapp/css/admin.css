@@ -1,0 +1,65 @@
+@charset 'utf-8';
+#user_message {
+	margin-top: 8px;
+}
+#admin_main{
+}
+#nav {
+	border: 1px solid #ddd;
+	display: inline-block;
+	float: left;
+	width: 20%;
+	margin: 2% 0 0 2%;
+}
+.admin_content{
+	display: inline-block;
+	margin-left: 2%;
+	margin-top: 2%;
+	width: 70%;
+	height: 500px;
+	/* background-color: #e1652f; */
+	/* background-color: #ddd; */
+	border-left: 1px solid #ddd;
+}
+.admin_content_user_message{
+
+}
+.admin_head{
+	padding-left: 43%;
+}
+.admin_content h1{
+	text-indent: 1em;
+}
+.admin_content_main {
+	margin: 2%;
+	display: inline-block;
+	font-size: 20px;
+	width: 50%;
+	margin-left: 30%;
+}
+.admin_content_main_row {
+	margin:20px;
+	text-align: center;
+}
+.admin_content_main_row div{
+	display: inline-block;
+}
+.activity_content{
+	width: 90%;
+	margin-left: 5%;
+}
+#clipArea {
+	height: 300px;
+}
+#file,
+#clipBtn {
+	margin: 20px;
+}
+#view {
+	background-image: url("http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/1000/h/1000/q/80");
+	display: inline-block;
+	margin: 0 auto;
+	width: 150px;
+	height: 150px;
+	margin-left: 30%;
+}

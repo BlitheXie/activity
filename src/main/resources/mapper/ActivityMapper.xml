@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.activity.dao.ActivityMapper" >
+  <resultMap id="BaseResultMap" type="cn.activity.domain.Activity" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="view" property="view" jdbcType="INTEGER" />
+    <result column="head" property="head" jdbcType="VARCHAR" />
+    <result column="activity_name" property="activityName" jdbcType="VARCHAR" />
+    <result column="activity_content" property="activityContent" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="must_check" property="mustCheck" jdbcType="INTEGER" />
+    <result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
+    <result column="start_time" property="startTime" jdbcType="TIMESTAMP" />
+    <result column="origanization_id" property="origanizationId" jdbcType="INTEGER" />
+    <result column="organization_name" property="organizationName" jdbcType="VARCHAR" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from activity
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.activity.domain.Activity" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into activity (id, view, head, 
+      activity_name, activity_content, create_time, 
+      must_check, end_time, start_time, 
+      origanization_id, organization_name)
+    values (#{id,jdbcType=INTEGER}, #{view,jdbcType=INTEGER}, #{head,jdbcType=VARCHAR}, 
+      #{activityName,jdbcType=VARCHAR}, #{activityContent,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{mustCheck,jdbcType=INTEGER}, #{endTime,jdbcType=TIMESTAMP}, #{startTime,jdbcType=TIMESTAMP}, 
+      #{origanizationId,jdbcType=INTEGER}, #{organizationName,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="cn.activity.domain.Activity" >
+    update activity
+    set view = #{view,jdbcType=INTEGER},
+      head = #{head,jdbcType=VARCHAR},
+      activity_name = #{activityName,jdbcType=VARCHAR},
+      activity_content = #{activityContent,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      must_check = #{mustCheck,jdbcType=INTEGER},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      origanization_id = #{origanizationId,jdbcType=INTEGER},
+      organization_name = #{organizationName,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select id, view, head, activity_name, activity_content, create_time, must_check, 
+    end_time, start_time, origanization_id, organization_name
+    from activity
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select id, view, head, activity_name, activity_content, create_time, must_check, 
+    end_time, start_time, origanization_id, organization_name
+    from activity
+  </select>
+</mapper>

@@ -1,0 +1,58 @@
+@charset "utf-8";
+
+.item_message {
+	display: inline-block;
+	width: 60%;
+	height: 200px;
+	background-color: ;
+	margin-left: 2%;
+}
+.content_head {
+	margin-bottom: 20px;
+}
+#introduce{
+	border: 0px solid red;
+	margin-bottom: 2%;
+}
+.introduce_close {
+	height: 100px;
+	overflow: hidden;
+}
+.introduce_open {
+	
+}
+#close {
+	color: blue;
+	font-size: 10px;
+	cursor: pointer;
+}
+#close:hover{
+	background-color: #ddd;
+}
+.comment{
+
+}
+.comment_head{
+	display: inline-block;
+	float: left;
+}
+.comment_content{
+	display: inline-block;
+	float: left;
+}
+.comment_clearfloat{
+	clear: both;
+}
+.comment_like{
+	cursor: pointer;
+}
+
+#comment_bar{
+	width: 500px ! important;
+}
+#input_star{
+	display: inline-block;
+	width: 100px ! important;
+	margin-top:20px;
+	padding: 0px;
+}

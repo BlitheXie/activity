@@ -1,0 +1,67 @@
+@charset "utf-8";
+
+.music_content{
+	
+}
+
+#music_new,#music_hot,#movie_new {
+	margin-top: 10px;
+	margin-left: 2%;
+	width: 96%;
+	height: 380px;
+	background-color: #ddd;
+}
+.music_item,.movie_item{
+	margin: 10px;
+	display: inline-block;
+	height: 170px;
+	width: 150px;
+	float: left;
+}
+.music_item img ,.movie_item img{
+	margin-left: 20px;
+	margin-top: 2px;
+}
+.music_name,.movie_name {
+	display: block;
+	text-align: center;
+	margin:0 auto;
+}
+.music_name:hover,.movie_name:hover {
+	background-color: #3C9DD0;
+	color: #FF8B00;
+}
+.music_artist,.movie_artist {
+	display: block;
+	text-align: center;
+	margin:0 auto;
+}
+/* book */
+#book_new {
+	margin-top: 10px;
+	margin-left: 2%;
+	width: 96%;
+	height: 480px;
+	background-color: #ddd;
+}
+.book_item{
+	margin: 2%;
+	display: inline-block;
+	height: 48%
+	width: 20%;
+	float: left;
+}
+.book_item img{
+	margin-left: 20px;
+	margin-top: 2px;
+}
+.book_name{
+	display: block;
+	text-align: center;
+	margin:0 auto;
+}
+.book_artist {
+	display: block;
+	text-align: center;
+	margin:0 auto;
+}

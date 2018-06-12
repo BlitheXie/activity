@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.activity.dao.ActivityAfterMapper" >
+  <resultMap id="BaseResultMap" type="cn.activity.domain.ActivityAfter" >
+    <id column="activity_id" property="activityId" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="likes" property="likes" jdbcType="INTEGER" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from activity_after
+    where activity_id = #{activityId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.activity.domain.ActivityAfter" >
+    insert into activity_after (activity_id, create_time, likes, 
+      content)
+    values (#{activityId,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{likes,jdbcType=INTEGER}, 
+      #{content,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="cn.activity.domain.ActivityAfter" >
+    update activity_after
+    set create_time = #{createTime,jdbcType=TIMESTAMP},
+      likes = #{likes,jdbcType=INTEGER},
+      content = #{content,jdbcType=VARCHAR}
+    where activity_id = #{activityId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select activity_id, create_time, likes, content
+    from activity_after
+    where activity_id = #{activityId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select activity_id, create_time, likes, content
+    from activity_after
+  </select>
+</mapper>

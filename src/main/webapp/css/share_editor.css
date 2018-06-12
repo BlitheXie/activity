@@ -1,0 +1,21 @@
+@charset 'utf-8';
+
+#title_input{
+	display: inline-block;
+	margin: 10px;
+	margin-left: 10%;
+	width: 80%;
+}
+#share_main_title{
+	margin-bottom: 10px;
+}
+#share_main_editor{
+	width: 80%;
+	display: inline-block;
+	margin-left: 10%;
+	height: 800px;
+}
+#share_commit_mian{
+	width: 80%;
+	margin-left: 10%;
+}

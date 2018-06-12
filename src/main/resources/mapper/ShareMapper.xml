@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.activity.dao.ShareMapper" >
+  <resultMap id="BaseResultMap" type="cn.activity.domain.Share" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
+    <result column="source_id" property="sourceId" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="last_comment" property="lastComment" jdbcType="INTEGER" />
+    <result column="comment" property="comment" jdbcType="INTEGER" />
+    <result column="last_like" property="lastLike" jdbcType="INTEGER" />
+    <result column="likes" property="likes" jdbcType="INTEGER" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from share
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.activity.domain.Share" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into share (id, content, source_id, 
+      create_time, last_comment, comment, 
+      last_like, likes)
+    values (#{id,jdbcType=INTEGER}, #{content,jdbcType=VARCHAR}, #{sourceId,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{lastComment,jdbcType=INTEGER}, #{comment,jdbcType=INTEGER}, 
+      #{lastLike,jdbcType=INTEGER}, #{likes,jdbcType=INTEGER})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="cn.activity.domain.Share" >
+    update share
+    set content = #{content,jdbcType=VARCHAR},
+      source_id = #{sourceId,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      last_comment = #{lastComment,jdbcType=INTEGER},
+      comment = #{comment,jdbcType=INTEGER},
+      last_like = #{lastLike,jdbcType=INTEGER},
+      likes = #{likes,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select id, content, source_id, create_time, last_comment, comment, last_like, likes
+    from share
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select id, content, source_id, create_time, last_comment, comment, last_like, likes
+    from share
+  </select>
+</mapper>

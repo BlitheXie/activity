@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.activity.dao.HelpMapper" >
+  <resultMap id="BaseResultMap" type="cn.activity.domain.Help" >
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="id" property="id" jdbcType="INTEGER" />
+    <result column="views" property="views" jdbcType="INTEGER" />
+  </resultMap>
+  <insert id="insert" parameterType="cn.activity.domain.Help" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into help (user_id, content, title, 
+      id, views)
+    values (#{userId,jdbcType=INTEGER}, #{content,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, 
+      #{id,jdbcType=INTEGER}, #{views,jdbcType=INTEGER})
+  </insert>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select user_id, content, title, id, views
+    from help
+  </select>
+</mapper>
