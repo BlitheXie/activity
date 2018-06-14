@@ -14,6 +14,16 @@
       org.springframework.web.context.ContextLoaderListener
     </listener-class>
   </listener>
+  <servlet-mapping>
+    <servlet-name>default</servlet-name>
+    <url-pattern>/js/*</url-pattern>
+    <url-pattern>/css/*</url-pattern>
+    <url-pattern>/images/*</url-pattern>
+    <url-pattern>/Temp-images/*</url-pattern>
+    <url-pattern>/assets/*</url-pattern>
+    <url-pattern>/ueditor/*</url-pattern>
+    <url-pattern>/user/*</url-pattern>
+  </servlet-mapping>
 
   <servlet>
     <servlet-name>dispatcher</servlet-name>
@@ -25,7 +35,8 @@
 
   <servlet-mapping>
     <servlet-name>dispatcher</servlet-name>
-    <url-pattern>*.html</url-pattern>
+    <url-pattern>/</url-pattern>
   </servlet-mapping>
+
 
 </web-app>
