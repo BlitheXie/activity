@@ -3,10 +3,13 @@ package cn.activity.controller;
 import cn.activity.Utils.LoadPropertiesDataUtils;
 import cn.activity.Utils.RandomUtils;
 import cn.activity.Utils.StringUtils;
+import cn.activity.domain.Share;
+import cn.activity.service.ShareService;
+import cn.activity.service.UserService;
 import com.baidu.ueditor.ActionEnter;
 import com.google.gson.Gson;
 import org.apache.ibatis.annotations.Param;
-import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.FileCopyUtils;
@@ -20,13 +23,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 import java.util.UUID;
 
 @Controller
 public class ShareController {
 
+    @Autowired
+    public ShareService shareService;
+
+    @Autowired
+    public void setShareService(ShareService shareService) {
+        this.shareService = shareService;
+    }
     @RequestMapping("shareeditor")
     public String shareEditor(){
         return "shareeditor";
@@ -108,8 +117,22 @@ public class ShareController {
     }
 
 
-    @RequestMapping("")
-    public @RequestBody String insertShare(){
+    @RequestMapping(value = "insertshare.html" ,method = RequestMethod.POST)
+    public @ResponseBody String insertShare(@Param("title")String title,@Param("content")String content){
+        System.out.println("1");
+        Share share = new Share();
+        share.setContent(content.getBytes());
+        share.setTitle(title);
+        int id = shareService.insertShareContentReturnId(share);
+        Share share1 = shareService.getShareById(id);
+        byte[] s = share1.getContent();
+        String ss = new String(s);
+        System.out.println(ss);
+        return id+"";
+    }
 
+    @RequestMapping(value = "addImage.html",method = RequestMethod.POST)
+    public @ResponseBody String addImageById(MultipartFile file){
+        return "sss"
     }
 }

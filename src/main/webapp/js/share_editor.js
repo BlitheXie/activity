@@ -105,13 +105,21 @@ $(function(){
 	});
 
 	$(function() {
+
 		$('#doc-modal-list').find('.am-icon-close').add('#doc-confirm-toggle').
 		on('click', function() {
 			$('#my-confirm').modal({
 				relatedTarget: this,
 				onConfirm: function(options) {
+                    var title = $('input[name="title"]').val();
+                    var content = ue.getContent();
 
-					alert(msg);
+                    $.post(
+                        "http://localhost:8080/insertshare.html",{title:title,content:content},function (data) {
+                            var id = data;
+
+                        }
+                    );
 					alert(ue.getContent());
 				},
         // closeOnConfirm: false,

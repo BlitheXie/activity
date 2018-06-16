@@ -3,32 +3,34 @@
 <mapper namespace="cn.activity.dao.ShareMapper" >
   <resultMap id="BaseResultMap" type="cn.activity.domain.Share" >
     <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="content" property="content" jdbcType="VARCHAR" />
+    <result column="content" property="content" jdbcType="BLOB" />
     <result column="source_id" property="sourceId" jdbcType="INTEGER" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     <result column="last_comment" property="lastComment" jdbcType="INTEGER" />
     <result column="comment" property="comment" jdbcType="INTEGER" />
     <result column="last_like" property="lastLike" jdbcType="INTEGER" />
     <result column="likes" property="likes" jdbcType="INTEGER" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
   </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from share
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="cn.activity.domain.Share" >
-    <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
+  <insert id="insert" parameterType="cn.activity.domain.Share" useGeneratedKeys="true">
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into share (id, content, source_id, 
+    insert into share (id, title,content, source_id,
       create_time, last_comment, comment, 
       last_like, likes)
-    values (#{id,jdbcType=INTEGER}, #{content,jdbcType=VARCHAR}, #{sourceId,jdbcType=INTEGER}, 
+    values (#{id,jdbcType=INTEGER},#{title,jdbcType=VARCHAR} ,#{content,jdbcType=BLOB}, #{sourceId,jdbcType=INTEGER},
       #{createTime,jdbcType=TIMESTAMP}, #{lastComment,jdbcType=INTEGER}, #{comment,jdbcType=INTEGER}, 
       #{lastLike,jdbcType=INTEGER}, #{likes,jdbcType=INTEGER})
   </insert>
   <update id="updateByPrimaryKey" parameterType="cn.activity.domain.Share" >
     update share
-    set content = #{content,jdbcType=VARCHAR},
+    set content = #{content,jdbcType=BLOB},
+      title = #{title=jdbcType=VARCHAR},
       source_id = #{sourceId,jdbcType=INTEGER},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       last_comment = #{lastComment,jdbcType=INTEGER},
@@ -38,12 +40,12 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select id, content, source_id, create_time, last_comment, comment, last_like, likes
+    select id, content,title, source_id, create_time, last_comment, comment, last_like, likes
     from share
     where id = #{id,jdbcType=INTEGER}
   </select>
   <select id="selectAll" resultMap="BaseResultMap" >
-    select id, content, source_id, create_time, last_comment, comment, last_like, likes
+    select id, content,title, source_id, create_time, last_comment, comment, last_like, likes
     from share
   </select>
 </mapper>
