@@ -11,7 +11,9 @@
     <context:component-scan base-package="cn.activity.*"/>
     <!-- 配置视图解析器，将ModelAndView及字符串解析为具体的页面 -->
     <!--<mvc:view-controller path="/controller" view-name="controller"/>-->
-
+<!--    <bean id="userListJson1"
+          class="org.springframework.web.servlet.view.json.MappingJackson2JsonView"
+          p:modelKeys="message" />-->
 
     <bean
             class="org.springframework.web.servlet.view.InternalResourceViewResolver"
@@ -19,4 +21,9 @@
             p:prefix="/WEB-INF/"
             p:suffix=".jsp" />
 
+    <bean id="multipartResolver"
+          class="org.springframework.web.multipart.commons.CommonsMultipartResolver"
+          p:defaultEncoding="UTF-8"
+          p:maxUploadSize="5000000"
+          p:uploadTempDir="user"/>
 </beans>

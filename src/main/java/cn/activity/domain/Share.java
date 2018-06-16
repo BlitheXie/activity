@@ -1,11 +1,14 @@
 package cn.activity.domain;
 
+import jdk.nashorn.internal.objects.annotations.Getter;
+import jdk.nashorn.internal.objects.annotations.Setter;
+
 import java.util.Date;
 
 public class Share {
     private Integer id;
 
-    private String content;
+    private byte[] content;
 
     private Integer sourceId;
 
@@ -25,14 +28,6 @@ public class Share {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content == null ? null : content.trim();
     }
 
     public Integer getSourceId() {
@@ -81,5 +76,13 @@ public class Share {
 
     public void setLikes(Integer likes) {
         this.likes = likes;
+    }
+
+    public byte[] getContent() {
+        return content;
+    }
+
+    public void setContent(byte[] content) {
+        this.content = content;
     }
 }

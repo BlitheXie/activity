@@ -7,6 +7,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.junit.Assert;
 import org.junit.Test;
 import org.mybatis.spring.SqlSessionTemplate;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -44,6 +46,7 @@ public class UserMapperTest{
     @Test
     public void saveHead(){
         UserService userService = new UserService();
-       // userService.saveUserHead(1231);
+        Logger log = LoggerFactory.getLogger(UserMapperTest.class);
+        log.debug("log4测试" );
     }
 }
