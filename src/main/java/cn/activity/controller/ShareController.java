@@ -73,16 +73,11 @@ public class ShareController {
     @ResponseBody
     public String images (@RequestParam("upfile")MultipartFile upfile, HttpServletRequest request, HttpServletResponse response){
         Gson gson=new Gson();
-        System.out.println("upfile");
         Map<String, Object> params = new HashMap<String, Object>();
         response.setHeader("Content-Type" , "application/json");
         try{
             /*String basePath = LoadPropertiesDataUtils.getValue("lyz.uploading.url");
             String visitUrl = LoadPropertiesDataUtils.getValue("lyz.visit.url");*/
-            System.out.println(request.getSession().getServletContext().getContextPath());
-            System.out.println(request.getSession().getServletContext().getRealPath("/"));
-            System.out.println(request.getSession().getServletContext().getRealPath("/user"));
-
             String basePath = request.getSession().getServletContext().getRealPath("/user");
             /*if(basePath == null || "".equals(basePath)){
                 basePath = "d:/lyz/static";  //与properties文件中lyz.uploading.url相同，未读取到文件数据时为basePath赋默认值
@@ -131,8 +126,22 @@ public class ShareController {
         return id+"";
     }
 
-    @RequestMapping(value = "addImage.html",method = RequestMethod.POST)
-    public @ResponseBody String addImageById(MultipartFile file){
-        return "sss"
+    @RequestMapping(value = "addimage.html",method = RequestMethod.POST)
+    public @ResponseBody String addImageById(@RequestParam("head")MultipartFile head,@RequestParam("id") String id, HttpServletRequest request, HttpServletResponse response) throws IOException {
+        System.out.println("id:"+id);
+        String basePath = request.getSession().getServletContext().getRealPath("/share");
+        System.out.println(basePath);
+        String ext = StringUtils.getExt(head.getOriginalFilename());
+        System.out.println(ext);
+        String fileName = id + "."+ ext;
+        System.out.println(fileName);
+        basePath = basePath + "/" + fileName;
+        File f = new File(basePath);
+        if(!f.exists()){
+            f.getParentFile().mkdirs();
+        }
+        OutputStream out = new FileOutputStream(f);
+        FileCopyUtils.copy(head.getInputStream(), out);
+        return "1";
     }
 }

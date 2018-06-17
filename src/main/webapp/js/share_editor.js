@@ -117,7 +117,28 @@ $(function(){
                     $.post(
                         "http://localhost:8080/insertshare.html",{title:title,content:content},function (data) {
                             var id = data;
+                            var file = $('input[name="head"]').prop("files");
+                            var formData = new FormData();
+                            formData.append('head', file[0]);
+                            formData.append("id",id);
+                            /*$.post(
+                                "http://localhost:8080/addImage.html",{ id:id ,file:file[0]},function (data) {
+                                    alert(data);
+                                }
 
+                            );*/
+                            $.ajax({
+                                url: 'http://localhost:8080/addimage.html',
+                                type: 'POST',
+                                cache: false,
+                                data: formData,
+                                processData: false,
+                                contentType: false
+                            }).done(function(res) {
+                                alert("success");
+                            }).fail(function(res) {
+                                alert("fault");
+                            });
                         }
                     );
 					alert(ue.getContent());
