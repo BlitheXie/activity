@@ -1,4 +1,6 @@
-<%@ page import="java.text.SimpleDateFormat" %><%--
+<%@ page import="java.text.SimpleDateFormat" %>
+<%@ page import="cn.activity.domain.Share" %>
+<%@ page import="java.util.List" %><%--
   Created by IntelliJ IDEA.
   User: Blithe_Xie
   Date: 2018/6/12
@@ -14,6 +16,7 @@
         id = session.getAttribute("id").toString();
         username = session.getAttribute("userName").toString();
     }
+
 %>
 <!DOCTYPE html>
 <html lang="en">

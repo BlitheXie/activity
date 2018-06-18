@@ -48,4 +48,8 @@
     select id, content,title, source_id, create_time, last_comment, comment, last_like, likes
     from share
   </select>
+
+  <select id="getDataByPageNumber"  resultMap="BaseResultMap" >
+    select * from share ORDER BY create_time DESC limit #{page},10;
+  </select>
 </mapper>

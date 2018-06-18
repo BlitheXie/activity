@@ -3,6 +3,7 @@ package cn.activity.controller;
 import cn.activity.Utils.LoadPropertiesDataUtils;
 import cn.activity.Utils.RandomUtils;
 import cn.activity.Utils.StringUtils;
+import cn.activity.domain.Page;
 import cn.activity.domain.Share;
 import cn.activity.service.ShareService;
 import cn.activity.service.UserService;
@@ -143,5 +144,14 @@ public class ShareController {
         OutputStream out = new FileOutputStream(f);
         FileCopyUtils.copy(head.getInputStream(), out);
         return "1";
+    }
+
+    @RequestMapping(value="share.html")
+    public ModelAndView Share(@RequestParam(value = "page",defaultValue = "1") String page){
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("share");
+        Page<Share> dataByPage = shareService.getDataByPage(Integer.parseInt(page));
+        modelAndView.addObject("data",dataByPage);
+        return modelAndView;
     }
 }

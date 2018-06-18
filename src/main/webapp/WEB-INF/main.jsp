@@ -1,4 +1,5 @@
-<%--
+<%@ page import="cn.activity.domain.Share" %>
+<%@ page import="java.util.List" %><%--
   Created by IntelliJ IDEA.
   User: Blithe_Xie
   Date: 2018/6/11
@@ -7,6 +8,10 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page session="true" %>
+<%@ page isELIgnored="false" %>
+<%
+    List<Share> list = (List<Share>) request.getAttribute("shareList");
+%>
 <!doctype html>
 <html class="no-js">
 <head>
@@ -106,13 +111,20 @@
             <!-- 轮播图 -->
             <div data-am-widget="slider" class="am-slider am-slider-c1" data-am-slider='{"directionNav":false}' >
                 <ul class="am-slides">
-                    <li>
-                        <a href="events_show.html"><img src="Temp-images/bb1.jpg"></a>
-                        <div class="am-slider-desc">远方 有一个地方 那里种有我们的梦想</div>
+                    <%
+                        for (int i = 0;i<=3;i++){
+                            Share share = list.get(i);
 
-                    </li>
+                    %>
                     <li>
-                        <a href="events_show.html"><img src="Temp-images/bb2.jpg"></a>
+                        <a href="events_show.html"><img height="485" width="385" onerror="onerror=null;src='Temp-images/bb2.jpg' " src="/share/<%=share.getId()%>.jpg"></a>
+                        <div class="am-slider-desc"><%=share.getTitle()%>1远方 有一个地方 那里种有我们的梦想</div>
+                    </li>
+                    <%
+                        }
+                    %>
+                    <%--<li>
+                        <a href="events_show.html"><img src="Temp-images/bb2x.jpg"></a>
                         <div class="am-slider-desc">某天 也许会相遇 相遇在这个好地方</div>
 
                     </li>
@@ -124,7 +136,7 @@
                     <li>
                         <a href="events_show.html"><img src="Temp-images/bb4.jpg"></a>
                         <div class="am-slider-desc">OH PARA PARADISE 是否那么重要 你是否那么地遥远</div>
-                    </li>
+                    </li>--%>
                 </ul>
             </div>
         </div>
@@ -176,16 +188,23 @@
 <!--banner2-->
 <div class="am-container">
     <ul class="padding-none banner2 am-gallery am-avg-sm-2 am-avg-md-4 am-avg-lg-4 am-gallery-overlay" data-am-gallery="{ pureview: true }" >
+        <%
+            for (int i = 4;i<=7;i++){
+                Share share = list.get(i);
+        %>
         <li>
             <div class="am-gallery-item">
                 <a href="news.html">
-                    <img src="Temp-images/tempnews.png"  alt="远方 有一个地方 那里种有我们的梦想"/>
+                    <img src="/share/<%=share.getId()%>.jpg" style="width:300px;height:160px;overflow:hidden;" <%--height="130" width="270"--%> onerror="onerror=null;src='Temp-images/tempnews.png' " alt="远方 有一个地方 那里种有我们的梦想"/>
                     <h3 class="am-gallery-title">远方 有一个地方 那里种有我们的梦想</h3>
                     <div class="am-gallery-desc">2375-09-26</div>
                 </a>
             </div>
         </li>
-        <li>
+        <%
+            }
+        %>
+        <%--<li>
             <div class="am-gallery-item">
                 <a href="#">
                     <img src="Temp-images/tempnews.png"  alt="远方 有一个地方 那里种有我们的梦想"/>
@@ -211,7 +230,7 @@
                     <div class="am-gallery-desc">2375-09-26</div>
                 </a>
             </div>
-        </li>
+        </li>--%>
     </ul>
 </div>
 <!--news-->
