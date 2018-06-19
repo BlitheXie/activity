@@ -1,31 +1,30 @@
 package cn.activity.controller;
 
-import cn.activity.Utils.LoadPropertiesDataUtils;
 import cn.activity.Utils.RandomUtils;
 import cn.activity.Utils.StringUtils;
 import cn.activity.domain.Page;
 import cn.activity.domain.Share;
+import cn.activity.domain.ShareComment;
 import cn.activity.service.ShareService;
 import cn.activity.service.UserService;
 import com.baidu.ueditor.ActionEnter;
 import com.google.gson.Gson;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
-import org.springframework.web.multipart.support.DefaultMultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.*;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
 @Controller
 public class ShareController {
@@ -34,9 +33,18 @@ public class ShareController {
     public ShareService shareService;
 
     @Autowired
+    public void setUserService(UserService userService) {
+        this.userService = userService;
+    }
+
+    @Autowired
+    public UserService userService;
+
+    @Autowired
     public void setShareService(ShareService shareService) {
         this.shareService = shareService;
     }
+
     @RequestMapping("shareeditor")
     public String shareEditor(){
         return "shareeditor";
@@ -153,5 +161,41 @@ public class ShareController {
         Page<Share> dataByPage = shareService.getDataByPage(Integer.parseInt(page));
         modelAndView.addObject("data",dataByPage);
         return modelAndView;
+    }
+
+    @RequestMapping(value = "shareitem")
+    public ModelAndView ShareItem(@RequestParam(value = "id")int shareid,@RequestParam(value = "page",defaultValue = "1") int page, HttpSession session){
+        int userid = (int) session.getAttribute("id");
+        Share share = shareService.getShareById(shareid);
+        Page<ShareComment> shareComment = shareService.getDataBypageShareId(page,shareid);
+        List<String> commentUserName = userService.getUserNameFromCommentList(shareComment.getData());
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("shareitem");
+        modelAndView.addObject("share",share);
+        modelAndView.addObject("page",page);
+        modelAndView.addObject("comment",shareComment);
+        modelAndView.addObject("commentusername",commentUserName);
+        return modelAndView;
+    }
+
+    @RequestMapping("addlike")
+    public @ResponseBody int addLike(@RequestParam(value = "id") int id){
+        ShareComment shareComment = shareService.getShareCommentById(id);
+        Integer likes = shareComment.getLikes();
+        shareComment.setLikes(likes + 1);
+        return shareService.updateCommentById(shareComment);
+    }
+
+    @RequestMapping("addComment")
+    public ModelAndView addCommentById(@RequestParam("id") int shareId ,@RequestParam("content")String content,HttpSession session){
+        int userId = (int) session.getAttribute("id");
+        ShareComment shareComment = new ShareComment();
+        shareComment.setContent(content);
+        shareComment.setLikes(0);
+        shareComment.setShareId(shareId);
+        shareComment.setUserId(userId);
+        shareComment.setCreateTime(new Date());
+        shareService.addShareComment(shareComment);
+        return ShareItem(shareId,1,session);
     }
 }

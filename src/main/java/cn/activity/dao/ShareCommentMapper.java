@@ -13,4 +13,8 @@ public interface ShareCommentMapper {
     List<ShareComment> selectAll();
 
     int updateByPrimaryKey(ShareComment record);
+
+    List<ShareComment> getDataByPageNumber(int page,int shareId);
+
+    int getCountById(int id);
 }

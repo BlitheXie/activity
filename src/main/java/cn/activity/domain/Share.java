@@ -10,7 +10,7 @@ public class Share {
 
     private byte[] content;
 
-    private Integer sourceId;
+    private Integer userId;
 
     private Date createTime;
 
@@ -40,12 +40,12 @@ public class Share {
         this.id = id;
     }
 
-    public Integer getSourceId() {
-        return sourceId;
+    public Integer getUserId() {
+        return userId;
     }
 
-    public void setSourceId(Integer sourceId) {
-        this.sourceId = sourceId;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
     public Date getCreateTime() {

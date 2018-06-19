@@ -17,4 +17,6 @@ public interface UserMapper {
     List<User> getUserByStuNumber(String stuNumber);
 
     int update(User user);
+
+    String getUserNameByUserId(int id);
 }

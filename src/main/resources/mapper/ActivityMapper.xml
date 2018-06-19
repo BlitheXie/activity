@@ -6,7 +6,7 @@
     <result column="view" property="view" jdbcType="INTEGER" />
     <result column="head" property="head" jdbcType="VARCHAR" />
     <result column="activity_name" property="activityName" jdbcType="VARCHAR" />
-    <result column="activity_content" property="activityContent" jdbcType="VARCHAR" />
+    <result column="activity_content" property="activityContent" jdbcType="BLOB" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     <result column="must_check" property="mustCheck" jdbcType="INTEGER" />
     <result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
@@ -18,8 +18,8 @@
     delete from activity
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="cn.activity.domain.Activity" >
-    <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
+  <insert id="insert" parameterType="cn.activity.domain.Activity" useGeneratedKeys="true">
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
     insert into activity (id, view, head, 
@@ -27,7 +27,7 @@
       must_check, end_time, start_time, 
       origanization_id, organization_name)
     values (#{id,jdbcType=INTEGER}, #{view,jdbcType=INTEGER}, #{head,jdbcType=VARCHAR}, 
-      #{activityName,jdbcType=VARCHAR}, #{activityContent,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{activityName,jdbcType=VARCHAR}, #{activityContent,jdbcType=BLOB}, #{createTime,jdbcType=TIMESTAMP},
       #{mustCheck,jdbcType=INTEGER}, #{endTime,jdbcType=TIMESTAMP}, #{startTime,jdbcType=TIMESTAMP}, 
       #{origanizationId,jdbcType=INTEGER}, #{organizationName,jdbcType=VARCHAR})
   </insert>
@@ -36,7 +36,7 @@
     set view = #{view,jdbcType=INTEGER},
       head = #{head,jdbcType=VARCHAR},
       activity_name = #{activityName,jdbcType=VARCHAR},
-      activity_content = #{activityContent,jdbcType=VARCHAR},
+      activity_content = #{activityContent,jdbcType=BLOB},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       must_check = #{mustCheck,jdbcType=INTEGER},
       end_time = #{endTime,jdbcType=TIMESTAMP},

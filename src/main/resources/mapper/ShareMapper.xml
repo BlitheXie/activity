@@ -31,7 +31,7 @@
     update share
     set content = #{content,jdbcType=BLOB},
       title = #{title=jdbcType=VARCHAR},
-      source_id = #{sourceId,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=INTEGER},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       last_comment = #{lastComment,jdbcType=INTEGER},
       comment = #{comment,jdbcType=INTEGER},
@@ -40,12 +40,12 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select id, content,title, source_id, create_time, last_comment, comment, last_like, likes
+    select id, content,title, user_id, create_time, last_comment, comment, last_like, likes
     from share
     where id = #{id,jdbcType=INTEGER}
   </select>
   <select id="selectAll" resultMap="BaseResultMap" >
-    select id, content,title, source_id, create_time, last_comment, comment, last_like, likes
+    select id, content,title, user_id, create_time, last_comment, comment, last_like, likes
     from share
   </select>
 

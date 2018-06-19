@@ -11,7 +11,7 @@ public class Activity {
 
     private String activityName;
 
-    private String activityContent;
+    private byte[] activityContent;
 
     private Date createTime;
 
@@ -57,12 +57,12 @@ public class Activity {
         this.activityName = activityName == null ? null : activityName.trim();
     }
 
-    public String getActivityContent() {
+    public byte[] getActivityContent() {
         return activityContent;
     }
 
-    public void setActivityContent(String activityContent) {
-        this.activityContent = activityContent == null ? null : activityContent.trim();
+    public void setActivityContent(byte[] activityContent) {
+        this.activityContent = activityContent;
     }
 
     public Date getCreateTime() {

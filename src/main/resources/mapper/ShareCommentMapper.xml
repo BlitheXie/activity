@@ -44,4 +44,13 @@
     select id, user_id, share_id, create_time, likes, last_likes, content
     from share_comment
   </select>
+
+  <select id="getDataByPageNumber"  resultMap="BaseResultMap" >
+    select * from share_comment WHERE share_id = #{1} ORDER BY likes DESC limit #{0},5;
+  </select>
+
+  <select id="getCountById" resultType="int">
+    SELECT count(*) FROM share_comment WHERE share_id = #{id};
+  </select>
+
 </mapper>
