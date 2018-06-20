@@ -998,7 +998,7 @@
     </column>
     <column id="256" parent="239" name="head">
       <Position>3</Position>
-      <DataType>varchar(10)|0</DataType>
+      <DataType>varchar(255)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="257" parent="239" name="activity_name">
@@ -1008,7 +1008,7 @@
     </column>
     <column id="258" parent="239" name="activity_content">
       <Position>5</Position>
-      <DataType>varchar(255)|0</DataType>
+      <DataType>blob|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="259" parent="239" name="create_time">
@@ -1332,260 +1332,292 @@
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="315" parent="248" name="content">
+    <column id="315" parent="248" name="title">
       <Position>2</Position>
       <DataType>varchar(255)|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="316" parent="248" name="content">
+      <Position>3</Position>
+      <DataType>blob|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="316" parent="248" name="source_id">
-      <Position>3</Position>
+    <column id="317" parent="248" name="user_id">
+      <Position>4</Position>
       <DataType>int(11)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="317" parent="248" name="create_time">
-      <Position>4</Position>
+    <column id="318" parent="248" name="create_time">
+      <Position>5</Position>
       <DataType>timestamp|0</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
       <OnUpdate>CURRENT_TIMESTAMP</OnUpdate>
     </column>
-    <column id="318" parent="248" name="last_comment">
-      <Position>5</Position>
-      <DataType>int(11)|0</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="319" parent="248" name="comment">
+    <column id="319" parent="248" name="last_comment">
       <Position>6</Position>
       <DataType>int(11)|0</DataType>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="320" parent="248" name="last_like">
+    <column id="320" parent="248" name="comment">
       <Position>7</Position>
       <DataType>int(11)|0</DataType>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="321" parent="248" name="likes">
+    <column id="321" parent="248" name="last_like">
       <Position>8</Position>
       <DataType>int(11)|0</DataType>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="322" parent="248" name="PRIMARY">
+    <column id="322" parent="248" name="likes">
+      <Position>9</Position>
+      <DataType>int(11)|0</DataType>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="323" parent="248" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="323" parent="249" name="id">
+    <column id="324" parent="249" name="id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="324" parent="249" name="content">
+    <column id="325" parent="249" name="content">
       <Position>2</Position>
       <DataType>text|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="325" parent="249" name="user_id">
+    <column id="326" parent="249" name="user_id">
       <Position>3</Position>
       <DataType>int(11)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="326" parent="249" name="share_id">
+    <column id="327" parent="249" name="share_id">
       <Position>4</Position>
       <DataType>int(11)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="327" parent="249" name="create_time">
+    <column id="328" parent="249" name="create_time">
       <Position>5</Position>
       <DataType>timestamp|0</DataType>
       <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
       <OnUpdate>CURRENT_TIMESTAMP</OnUpdate>
     </column>
-    <column id="328" parent="249" name="likes">
+    <column id="329" parent="249" name="likes">
       <Position>6</Position>
       <DataType>int(11)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="329" parent="249" name="last_likes">
+    <column id="330" parent="249" name="last_likes">
       <Position>7</Position>
       <DataType>int(11)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="330" parent="249" name="PRIMARY">
+    <key id="331" parent="249" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="331" parent="250" name="stu_number">
+    <column id="332" parent="250" name="id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="332" parent="250" name="create_time">
+    <column id="333" parent="250" name="stu_number">
       <Position>2</Position>
+      <DataType>varchar(12)|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="334" parent="250" name="create_time">
+      <Position>3</Position>
       <DataType>timestamp|0</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
       <OnUpdate>CURRENT_TIMESTAMP</OnUpdate>
     </column>
-    <column id="333" parent="250" name="gender">
-      <Position>3</Position>
+    <column id="335" parent="250" name="gender">
+      <Position>4</Position>
       <DataType>char(2)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="334" parent="250" name="password">
-      <Position>4</Position>
+    <column id="336" parent="250" name="password">
+      <Position>5</Position>
       <DataType>varchar(25)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="335" parent="250" name="name">
-      <Position>5</Position>
+    <column id="337" parent="250" name="name">
+      <Position>6</Position>
       <DataType>varchar(255)|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="336" parent="251" name="user_id">
+    <key id="338" parent="250" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="339" parent="251" name="user_id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="337" parent="251" name="activity_id">
+    <column id="340" parent="251" name="activity_id">
       <Position>2</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="338" parent="251" name="create_time">
+    <column id="341" parent="251" name="activity_name">
       <Position>3</Position>
+      <DataType>varchar(256)|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="342" parent="251" name="create_time">
+      <Position>4</Position>
       <DataType>timestamp|0</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
       <OnUpdate>CURRENT_TIMESTAMP</OnUpdate>
     </column>
-    <column id="339" parent="251" name="has_check">
-      <Position>4</Position>
+    <column id="343" parent="251" name="has_check">
+      <Position>5</Position>
       <DataType>int(1)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="340" parent="252" name="id">
+    <column id="344" parent="252" name="id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="341" parent="252" name="singer_id">
+    <column id="345" parent="252" name="singer_id">
       <Position>2</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="342" parent="252" name="singer_name">
+    <column id="346" parent="252" name="singer_name">
       <Position>3</Position>
       <DataType>varchar(50)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="343" parent="252" name="type">
+    <column id="347" parent="252" name="type">
       <Position>4</Position>
       <DataType>int(11)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="344" parent="252" name="name">
+    <column id="348" parent="252" name="name">
       <Position>5</Position>
       <DataType>varchar(50)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="345" parent="252" name="introduce">
+    <column id="349" parent="252" name="introduce">
       <Position>6</Position>
       <DataType>text|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="346" parent="252" name="score">
+    <column id="350" parent="252" name="score">
       <Position>7</Position>
       <DataType>int(11)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="347" parent="252" name="head">
+    <column id="351" parent="252" name="count">
       <Position>8</Position>
+      <DataType>int(11)|0</DataType>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="352" parent="252" name="head">
+      <Position>9</Position>
       <DataType>varchar(255)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="348" parent="252" name="company">
-      <Position>9</Position>
+    <column id="353" parent="252" name="company">
+      <Position>10</Position>
       <DataType>varchar(100)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="349" parent="252" name="book_price">
-      <Position>10</Position>
+    <column id="354" parent="252" name="book_price">
+      <Position>11</Position>
       <DataType>decimal(10)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="350" parent="252" name="book_isbn">
-      <Position>11</Position>
+    <column id="355" parent="252" name="book_isbn">
+      <Position>12</Position>
       <DataType>varchar(15)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="351" parent="252" name="create_date">
-      <Position>12</Position>
+    <column id="356" parent="252" name="create_date">
+      <Position>13</Position>
       <DataType>timestamp|0</DataType>
       <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="352" parent="252" name="area">
-      <Position>13</Position>
+    <column id="357" parent="252" name="area">
+      <Position>14</Position>
       <DataType>varchar(100)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="353" parent="252" name="public_date">
-      <Position>14</Position>
+    <column id="358" parent="252" name="public_date">
+      <Position>15</Position>
       <DataType>date|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="354" parent="252" name="PRIMARY">
+    <key id="359" parent="252" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="355" parent="253" name="user_id">
+    <column id="360" parent="253" name="user_id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="356" parent="253" name="works_id">
+    <column id="361" parent="253" name="works_id">
       <Position>2</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="357" parent="253" name="content">
+    <column id="362" parent="253" name="content">
       <Position>3</Position>
       <DataType>text|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="358" parent="253" name="score">
+    <column id="363" parent="253" name="score">
       <Position>4</Position>
       <DataType>int(11)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="359" parent="253" name="likes">
+    <column id="364" parent="253" name="likes">
       <Position>5</Position>
       <DataType>int(11)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="360" parent="253" name="last_like">
+    <column id="365" parent="253" name="last_like">
       <Position>6</Position>
       <DataType>int(11)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="361" parent="253" name="create_time">
+    <column id="366" parent="253" name="create_time">
       <Position>7</Position>
       <DataType>timestamp|0</DataType>
       <NotNull>1</NotNull>

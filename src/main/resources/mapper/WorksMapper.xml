@@ -8,6 +8,7 @@
     <result column="type" property="type" jdbcType="INTEGER" />
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="score" property="score" jdbcType="INTEGER" />
+    <result column="count" property="count" jdbcType="INTEGER" />
     <result column="head" property="head" jdbcType="VARCHAR" />
     <result column="company" property="company" jdbcType="VARCHAR" />
     <result column="book_price" property="bookPrice" jdbcType="DECIMAL" />
@@ -26,13 +27,13 @@
       SELECT LAST_INSERT_ID()
     </selectKey>
     insert into works (id, singer_id, singer_name, 
-      type, name, score, 
+      type, name, score, count,
       head, company, book_price, 
       book_isbn, create_date, area, 
       public_date, introduce)
     values (#{id,jdbcType=INTEGER}, #{singerId,jdbcType=INTEGER}, #{singerName,jdbcType=VARCHAR}, 
-      #{type,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{score,jdbcType=INTEGER}, 
-      #{head,jdbcType=VARCHAR}, #{company,jdbcType=VARCHAR}, #{bookPrice,jdbcType=DECIMAL}, 
+      #{type,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{score,jdbcType=INTEGER}, #{count,jdbcType=INTEGER},
+    #{head,jdbcType=VARCHAR}, #{company,jdbcType=VARCHAR}, #{bookPrice,jdbcType=DECIMAL},
       #{bookIsbn,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, #{area,jdbcType=VARCHAR}, 
       #{publicDate,jdbcType=DATE}, #{introduce,jdbcType=LONGVARCHAR})
   </insert>
@@ -42,6 +43,7 @@
       singer_name = #{singerName,jdbcType=VARCHAR},
       type = #{type,jdbcType=INTEGER},
       name = #{name,jdbcType=VARCHAR},
+      count = #{count,jdbcType=INTEGER}
       score = #{score,jdbcType=INTEGER},
       head = #{head,jdbcType=VARCHAR},
       company = #{company,jdbcType=VARCHAR},
@@ -54,13 +56,13 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select id, singer_id, singer_name, type, name, score, head, company, book_price, 
+    select id, singer_id, singer_name, type, name, score,count, head, company, book_price,
     book_isbn, create_date, area, public_date, introduce
     from works
     where id = #{id,jdbcType=INTEGER}
   </select>
   <select id="selectAll" resultMap="BaseResultMap" >
-    select id, singer_id, singer_name, type, name, score, head, company, book_price, 
+    select id, singer_id, singer_name, type, name, score,count, head, company, book_price,
     book_isbn, create_date, area, public_date, introduce
     from works
   </select>

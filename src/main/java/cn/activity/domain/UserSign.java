@@ -9,6 +9,16 @@ public class UserSign {
 
     private Date createTime;
 
+    private String activityName;
+
+    public String getActivityName() {
+        return activityName;
+    }
+
+    public void setActivityName(String activityName) {
+        this.activityName = activityName;
+    }
+
     private Integer hasCheck;
 
     public Integer getUserId() {

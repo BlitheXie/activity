@@ -14,6 +14,18 @@
 <!--    <bean id="userListJson1"
           class="org.springframework.web.servlet.view.json.MappingJackson2JsonView"
           p:modelKeys="message" />-->
+    <bean
+            class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+        <property name="messageConverters">
+            <list>
+                <ref bean="mappingJacksonHttpMessageConverter" />
+            </list>
+        </property>
+    </bean>
+
+    <bean id="mappingJacksonHttpMessageConverter"
+          class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+    </bean>
 
     <bean
             class="org.springframework.web.servlet.view.InternalResourceViewResolver"

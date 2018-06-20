@@ -56,4 +56,12 @@
     end_time, start_time, origanization_id, organization_name
     from activity
   </select>
+
+  <select id="selectDataBypage" resultMap="BaseResultMap">
+    select * from activity ORDER BY start_time DESC limit #{0},4;
+  </select>
+
+  <select id="selectAllOrderByTime" resultMap="BaseResultMap">
+    select * from activity ORDER BY start_time DESC limit 0,8;
+  </select>
 </mapper>

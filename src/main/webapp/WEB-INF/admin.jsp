@@ -1,6 +1,9 @@
 <%@ page import="java.text.SimpleDateFormat" %>
 <%@ page import="cn.activity.domain.Share" %>
-<%@ page import="java.util.List" %><%--
+<%@ page import="java.util.List" %>
+<%@ page import="cn.activity.domain.UserSign" %>
+<%@ page import="java.text.Format" %>
+<%@ page import="java.util.ArrayList" %><%--
   Created by IntelliJ IDEA.
   User: Blithe_Xie
   Date: 2018/6/12
@@ -17,6 +20,9 @@
         username = session.getAttribute("userName").toString();
     }
 
+    List<UserSign> activitySignList = (List<UserSign>) request.getAttribute("activity");
+    if (activitySignList == null)
+        activitySignList = new ArrayList<>();
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -174,48 +180,74 @@
                     <tr>
                         <th>活动名称</th>
                         <th>报名时间</th>
-                        <th>活动时间</th>
-                        <th>操作</th>
+                        <th>取消报名</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>Amaze UI</td>
-                        <td>http://amazeui.org</td>
-                        <td>http://amazeui.org</td>
-                        <td><a href="">删除</a></td>
-                    </tr>
-                    <tr>
-                        <td>Amaze UI</td>
-                        <td>http://amazeui.org</td>
-                        <td>http://amazeui.org</td>
-                        <td><a href="">删除</a></td>
-                    </tr>
-                    <tr class="am-active">
+
+                   <%-- <tr class="am-active">
                         <td>Amaze UI(Active)</td>
                         <td>Amaze UI(Active)</td>
                         <td>http://amazeui.org</td>
-                        <td><a href="">删除</a></td>
+                        <td><button actid="1" type="button"
+                                    class="cancel_act am-btn am-btn-warning"
+                                    id="doc-confirm-toggle" href="">取消</button></td>
+                    </tr>--%>
+                   <%
+                       Format fm = new SimpleDateFormat("yyyy-MM-dd");
+                        for (int i=0;i<activitySignList.size();i++){
+                            UserSign us = activitySignList.get(i);
+                   %>
+                   <tr>
+                        <td><a href="activityitem?id=<%=us.getActivityId()%>"><%=us.getActivityName()%></a></td>
+                        <td><%=fm.format(us.getCreateTime())%></td>
+                        <td><button actid="<%=us.getActivityId()%>" type="button"
+                                    class="cancel_act am-btn am-btn-warning"
+                                    id="doc-confirm-toggle" href="">取消</button></td>
                     </tr>
-                    <tr>
-                        <td>Amaze UI</td>
-                        <td>http://amazeui.org</td>
-                        <td>2012-10-01</td>
-                        <td><a href="">删除</a></td>
-                    </tr>
-                    <tr>
-                        <td>Amaze UI</td>
-                        <td>http://amazeui.org</td>
-                        <td>2012-10-01</td>
-                        <td><a href="">删除</a></td>
-                    </tr>
-                    <tr>
-                        <td>Amaze UI</td>
-                        <td>http://amazeui.org</td>
-                        <td>2012-10-01</td>
-                        <td><a href="">删除</a></td>
-                    </tr>
+                    <%
+                        }
+                    %>
                     </tbody>
+                    <div class="am-modal am-modal-confirm" tabindex="-1" id="my-confirm">
+                        <div class="am-modal-dialog">
+                            <div class="am-modal-hd">
+                                Amaze UI
+                            </div>
+                            <div class="am-modal-bd">
+                                你，确定要删除这条记录吗？
+                            </div>
+                            <div class="am-modal-footer">
+                                <span class="am-modal-btn" data-am-modal-cancel>取消</span>
+                                <span class="am-modal-btn" data-am-modal-confirm>确定</span>
+                            </div>
+                        </div>
+                    </div>
+                    <script type="text/javascript">
+                        $(function() {
+                            $(".cancel_act").
+                            on('click', function() {
+                                var actid = $(this).attr("actid");
+                                $('#my-confirm').modal({
+                                    relatedTarget: this,
+                                    onConfirm: function(options) {
+                                        var $link = $(this.relatedTarget).prev('a');
+                                        var msg = $link.length ? '你要删除的链接 ID 为 ' + $link.data('id') :
+                                            '确定了，但不知道要整哪样';
+                                        alert(actid);
+                                        window.location.replace("http://"+window.location.host+"/admin.html");
+                                        $.post(
+                                            "/deleteUserSign.html",{activityid:actid,userid:<%=id%>},function (data) {
+                                                alert(data)
+                                            }
+                                        );
+                                    }, onCancel: function() {
+                                        alert('算求，不弄了');
+                                    }
+                                });
+                            });
+                        });
+                    </script>
                 </table>
             </div>
         </div>

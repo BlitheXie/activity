@@ -31,4 +31,5 @@
   <select id="getUserNameByUserId" resultType="String">
     SELECT name FROM user WHERE id = #{id}
   </select>
+
 </mapper>

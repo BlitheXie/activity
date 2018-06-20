@@ -4,17 +4,31 @@
   <resultMap id="BaseResultMap" type="cn.activity.domain.UserSign" >
     <result column="user_id" property="userId" jdbcType="INTEGER" />
     <result column="activity_id" property="activityId" jdbcType="INTEGER" />
+    <result column="activity_name" property="activityName" jdbcType="VARCHAR" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     <result column="has_check" property="hasCheck" jdbcType="INTEGER" />
   </resultMap>
-  <insert id="insert" parameterType="cn.activity.domain.UserSign" >
-    insert into user_sign (user_id, activity_id, create_time, 
+  <insert id="insert" parameterType="cn.activity.domain.UserSign" useGeneratedKeys="true">
+    insert into user_sign (user_id, activity_id,activity_name, create_time,
       has_check)
-    values (#{userId,jdbcType=INTEGER}, #{activityId,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+    values (#{userId,jdbcType=INTEGER}, #{activityId,jdbcType=INTEGER}, #{activityName,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP},
       #{hasCheck,jdbcType=INTEGER})
   </insert>
   <select id="selectAll" resultMap="BaseResultMap" >
-    select user_id, activity_id, create_time, has_check
+    select user_id, activity_id, activity_name,create_time, has_check
     from user_sign
   </select>
+
+  <select id="isExists" resultType="int" >
+    select count(*) FROM user_sign
+    WHERE user_id = #{0} and activity_id=#{1}
+  </select>
+
+  <select id="getUserSignByUserId" resultMap="BaseResultMap">
+    SELECT user_id, activity_id, activity_name,create_time, has_check FROM user_sign where user_id = #{userId}
+  </select>
+
+    <select id="delete">
+        delete FROM user_sign where activity_id = #{0} and user_id = #{1};
+    </select>
 </mapper>

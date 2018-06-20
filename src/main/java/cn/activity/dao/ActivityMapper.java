@@ -13,4 +13,10 @@ public interface ActivityMapper {
     List<Activity> selectAll();
 
     int updateByPrimaryKey(Activity record);
+
+    List<Activity> selectDataBypage(int page);
+
+    List<Activity> selectAllOrderByTime();
+
+
 }

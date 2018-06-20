@@ -165,7 +165,7 @@ public class ShareController {
 
     @RequestMapping(value = "shareitem")
     public ModelAndView ShareItem(@RequestParam(value = "id")int shareid,@RequestParam(value = "page",defaultValue = "1") int page, HttpSession session){
-        int userid = (int) session.getAttribute("id");
+       // int userid = (int) session.getAttribute("id");
         Share share = shareService.getShareById(shareid);
         Page<ShareComment> shareComment = shareService.getDataBypageShareId(page,shareid);
         List<String> commentUserName = userService.getUserNameFromCommentList(shareComment.getData());

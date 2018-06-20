@@ -5,7 +5,17 @@ import java.util.Date;
 public class Works {
     private Integer id;
 
+    private Integer count;
+
     private Integer singerId;
+
+    public Integer getCount() {
+        return count;
+    }
+
+    public void setCount(Integer count) {
+        this.count = count;
+    }
 
     private String singerName;
 

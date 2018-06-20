@@ -1,5 +1,8 @@
 <%@ page import="cn.activity.domain.Share" %>
-<%@ page import="java.util.List" %><%--
+<%@ page import="java.util.List" %>
+<%@ page import="cn.activity.domain.Activity" %>
+<%@ page import="java.text.DateFormat" %>
+<%@ page import="java.text.SimpleDateFormat" %><%--
   Created by IntelliJ IDEA.
   User: Blithe_Xie
   Date: 2018/6/11
@@ -62,7 +65,7 @@
         <div class="am-collapse am-topbar-collapse" id="collapse-head">
             <ul class="am-nav am-nav-pills am-topbar-nav">
                 <li class="am-active"><a href="#">首页</a></li>
-                <li><a href="activities.html">活动</a></li>
+                <li><a href="activity.html">活动</a></li>
                 <li><a href="share.html">分享</a></li>
                 <li class="am-dropdown" data-am-dropdown>
                     <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
@@ -117,7 +120,7 @@
 
                     %>
                     <li>
-                        <a href="events_show.html"><img height="485" width="385" onerror="onerror=null;src='Temp-images/bb2.jpg' " src="/share/<%=share.getId()%>.jpg"></a>
+                        <a href="/shareitem?id=<%=share.getId()%>"><img height="485" width="385" onerror="onerror=null;src='Temp-images/bb2.jpg' " src="/share/<%=share.getId()%>.jpg"></a>
                         <div class="am-slider-desc"><%=share.getTitle()%>1远方 有一个地方 那里种有我们的梦想</div>
                     </li>
                     <%
@@ -194,7 +197,7 @@
         %>
         <li>
             <div class="am-gallery-item">
-                <a href="news.html">
+                <a href="/shareitem?id=<%=share.getId()%>">
                     <img src="/share/<%=share.getId()%>.jpg" style="width:300px;height:160px;overflow:hidden;" <%--height="130" width="270"--%> onerror="onerror=null;src='Temp-images/tempnews.png' " alt="远方 有一个地方 那里种有我们的梦想"/>
                     <h3 class="am-gallery-title">远方 有一个地方 那里种有我们的梦想</h3>
                     <div class="am-gallery-desc">2375-09-26</div>
@@ -241,33 +244,42 @@
                 最新活动
             </h2>
             <nav class="am-titlebar-nav">
-                <a href="#more">more &raquo;</a>
+                <a href="/activity">more &raquo;</a>
             </nav>
         </div>
 
         <div data-am-widget="list_news" class="am-list-news am-list-news-default news">
             <div class="am-list-news-bd">
                 <ul class="am-list">
-
+                    <%
+                        DateFormat dFormat = new SimpleDateFormat("yyyy-MM-dd");
+                        List<Activity> actList = (List<Activity>) request.getAttribute("activityList");
+                        for (int i = 0;i<actList.size();i++){
+                            Activity activity = actList.get(i);
+                    %>
                     <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" data-am-scrollspy="{animation:'fade'}">
                         <div class="am-u-sm-5 am-list-thumb">
-                            <a href="http://www.douban.com/online/11624755/">
-                                <img src="Temp-images/b2.jpg" alt="我最喜欢的一张画"/>
+                            <a href="activityitem?id=<%=activity.getId()%>">
+                                <img  onerror="onerror=null;src='http://s.amazeui.org/media/i/demos/bing-1.jpg' " src="/a/<%=activity.getId()%>.jpg" alt="我最喜欢的一张画"/>
                             </a>
 
                         </div>
 
                         <div class=" am-u-sm-7 am-list-main">
-                            <h3 class="am-list-item-hd"><a href="http://www.douban.com/online/11624755/">我最喜欢的一张画</a></h3>
+                            <h3 class="am-list-item-hd"><a href="http://www.douban.com/online/11624755/"><%=activity.getActivityName()%></a></h3>
                             <div class="am-list-item-text">你最喜欢的艺术作品，告诉大家它们的------名图画，色彩，交织，撞色，线条雕塑装置当代古代现代作品的照片美我最喜欢的画群296795413进群发画，少说多发图，</div>
                         </div>
                     </li>
                     <div class="newsico am-fr">
-                        <i class="am-icon-clock-o">2016/11/11</i>
-                        <i class="am-icon-hand-pointer-o">12322</i>
+                        <i class="am-icon-clock-o"><%=dFormat.format(activity.getStartTime())%></i>
+                        <i class="am-icon-hand-pointer-o"><%=activity.getView()%></i>
                     </div>
 
+                    <%
+                        }
+                    %>
 
+<%--
                     <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" data-am-scrollspy="{animation:'fade'}">
                         <div class="am-u-sm-5 am-list-thumb">
                             <a href="http://www.douban.com/online/11624755/">
@@ -372,6 +384,7 @@
 
                         </div>
                     </li>
+--%>
 
 
                 </ul>
@@ -393,15 +406,34 @@
 
                 <div id="youxi" class="case am-animation-slide-left">
                     <ul class="am-gallery am-avg-sm-2 am-avg-md-4 am-avg-lg-4 am-gallery-overlay" data-am-gallery="{ pureview: true }" >
+                       <%-- <%
+                            DateFormat dFormat = new SimpleDateFormat("yyyy-MM-dd");
+                            List<Activity> actList = (List<Activity>) request.getAttribute("activityList");
+                            for (int i = 0;i<actList.size();i++){
+                                Activity activity = actList.get(i);
+                        %>
                         <li>
                             <div class="am-gallery-item">
                                 <a href="Temp-images/dd.jpg">
-                                    <img src="Temp-images/cc.jpg" data-replace-img="Temp-images/dd.jpg" alt="远方 有一个地方 那里种有我们的梦想"/>
-                                    <h3 class="am-gallery-title">远方 有一个地方 那里种有我们的梦想</h3>
-                                    <div class="am-gallery-desc">2375-09-26</div>
+                                    <img  onerror="onerror=null;src='http://s.amazeui.org/media/i/demos/bing-1.jpg' " src="/a/<%=activity.getId()%>.jpg"        data-replace-img="Temp-images/dd.jpg" alt="远方 有一个地方 那里种有我们的梦想"/>
+                                    <h3 class="am-gallery-title"><%=activity.getActivityName()%></h3>
+                                    <div class="am-gallery-desc">
+                                        <%=dFormat.format(activity.getStartTime())%></div>
                                 </a>
                             </div>
                         </li>
+                        <%
+                            }
+                        %>--%>
+                           <li>
+                               <div class="am-gallery-item">
+                                   <a href="Temp-images/dd.jpg">
+                                       <img src="Temp-images/cc.jpg" data-replace-img="Temp-images/dd.jpg" alt="远方 有一个地方 那里种有我们的梦想"/>
+                                       <h3 class="am-gallery-title">远方 有一个地方 那里种有我们的梦想</h3>
+                                       <div class="am-gallery-desc">2375-09-26</div>
+                                   </a>
+                               </div>
+                           </li>
                         <li>
                             <div class="am-gallery-item">
                                 <a href="Temp-images/dd.jpg">

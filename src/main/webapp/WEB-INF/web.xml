@@ -27,6 +27,7 @@
     <url-pattern>/ueditor/*</url-pattern>
     <url-pattern>/user/*</url-pattern>
     <url-pattern>/share/*</url-pattern>
+    <url-pattern>/a/*</url-pattern>
   </servlet-mapping>
 
   <servlet>
